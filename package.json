@@ -1,20 +1,28 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "dist/server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "nodemon src/server.ts",
+    "start": "bunx tsc && node dist/server.js",
+    "build": "tsc"
   },
-  "keywords": [],
+  "keywords": [
+    "Express",
+    "NodeJS"
+  ],
   "author": "isadia",
   "license": "ISC",
-  "description": "",
+  "description": "Typescript NodeJS express server",
   "dependencies": {
     "express": "^4.19.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }

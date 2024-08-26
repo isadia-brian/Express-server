@@ -1,9 +1,12 @@
 // Import the 'express' module
 import express, { Request, Response } from "express";
+import { db } from "../src/db/index.ts";
+import cors from "cors";
 
 const app = express();
 const PORT = 5000;
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
@@ -24,6 +27,16 @@ app.get("/about", (req: Request, res: Response) => {
 app.post("/post-route", (req: Request, res: Response) => {
   const { name } = req.body;
   res.send(`Welcome ${name}`);
+});
+
+app.get("/api/bookings", async (req, res) => {
+  try {
+    const bookings = await db.query.booking.findMany();
+    res.json(bookings);
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    res.status(500).json({ error: "Failed to fetch bookings" });
+  }
 });
 
 app.listen(PORT, () => {

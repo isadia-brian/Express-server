@@ -1,1 +1,1 @@
-export { booking } from "@/db/schema/booking";
+export { booking } from "./booking.ts";

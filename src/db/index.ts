@@ -1,9 +1,9 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import * as schema from "@/db/schema";
-import env from "@/lib/env";
+import * as schema from "../db/schema/index.ts";
+import env from "../lib/env.ts";
 
-export const connection = postgres(env.DATABASE_URL);
+const connection = postgres(env.DATABASE_URL);
 
 export const db = drizzle(connection, {
   schema,
@@ -11,5 +11,3 @@ export const db = drizzle(connection, {
 });
 
 export type DB = typeof db;
-
-export default db;
